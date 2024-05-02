@@ -8,4 +8,13 @@ class Person {
   String? gender;
   String? picture;
   int? age;
+
+  Person({
+    this.id,
+    this.name,
+    this.surname,
+    this.email,
+    this.phone,
+    this.cell,
+  });
 }
