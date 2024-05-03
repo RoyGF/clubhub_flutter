@@ -6,7 +6,9 @@ class PersonWraper implements BaseWrapper<PersonModel, Person> {
   @override
   Person transform(PersonModel input) {
     return Person(
-      name: "John Doe", //TODO implement this
+      name: '${input.name?.first ?? ''} ${input.name?.last ?? ''}',
+      email: input.email,
+      phone: input.phone,
     );
   }
 }
