@@ -12,7 +12,7 @@ class RemoteRepositoryImpl implements RemoteRepository {
   final Dio _dio = Dio(_options);
 
   @override
-  Future<Either<Failure, List<PersonModel>>> getPersons() async {
+  Future<Either<AppFailure, List<PersonModel>>> getPersons() async {
     final response = await _dio.get("");
 
     if (response.statusCode == 200) {

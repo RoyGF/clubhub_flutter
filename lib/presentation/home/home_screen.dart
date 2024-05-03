@@ -27,6 +27,7 @@ class _HomeView extends StatelessWidget {
         title: const Text('Home Screen'),
       ),
       body: BlocBuilder<HomeCubit, HomeState>(
+        buildWhen: (previous, current) => previous.persons != current.persons,
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(
@@ -34,12 +35,13 @@ class _HomeView extends StatelessWidget {
             );
           } else {
             return ListView.builder(
+              physics: const ClampingScrollPhysics(),
               itemCount: state.persons.length,
               itemBuilder: (context, index) {
                 final person = state.persons[index];
                 return ListTile(
-                  title: Text(person.name ?? "No name"),
-                  subtitle: Text(person.email ?? "No email"),
+                  title: Text(person.name),
+                  subtitle: Text(person.email),
                 );
               },
             );

@@ -1,9 +1,4 @@
-abstract class Failure {
-  late String errorMessage;
-}
-
-class AppFailure implements Failure {
-  @override
+class AppFailure {
   String errorMessage;
 
   AppFailure({required this.errorMessage});

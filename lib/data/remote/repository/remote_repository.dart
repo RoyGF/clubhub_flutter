@@ -3,5 +3,5 @@ import 'package:clubhub/data/remote/models/person_model.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class RemoteRepository {
-  Future<Either<Failure, List<PersonModel>>> getPersons();
+  Future<Either<AppFailure, List<PersonModel>>> getPersons();
 }

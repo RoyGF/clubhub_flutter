@@ -6,9 +6,14 @@ class PersonWraper implements BaseWrapper<PersonModel, Person> {
   @override
   Person transform(PersonModel input) {
     return Person(
-      name: '${input.name?.first ?? ''} ${input.name?.last ?? ''}',
-      email: input.email,
-      phone: input.phone,
+      id: input.login?.uuid ?? '',
+      name: input.name?.first ?? '',
+      surname: input.name?.last ?? '',
+      email: input.email ?? '',
+      phone: input.phone ?? '',
+      cell: input.cell ?? '',
+      age: input.dob?.age ?? 0,
+      imageURL: input.picture?.large ?? '',
     );
   }
 }

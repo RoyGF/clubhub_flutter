@@ -6,9 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await di.init();
-
   runApp(const MyApp());
 }
 

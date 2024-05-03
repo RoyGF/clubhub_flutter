@@ -14,6 +14,15 @@ PersonModel _$PersonModelFromJson(Map<String, dynamic> json) => PersonModel(
       name: json['name'] == null
           ? null
           : PersonNameModel.fromJson(json['name'] as Map<String, dynamic>),
+      login: json['login'] == null
+          ? null
+          : LoginModel.fromJson(json['login'] as Map<String, dynamic>),
+      picture: json['picture'] == null
+          ? null
+          : PictureModel.fromJson(json['picture'] as Map<String, dynamic>),
+      dob: json['dob'] == null
+          ? null
+          : DOBModel.fromJson(json['dob'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PersonModelToJson(PersonModel instance) =>
@@ -23,4 +32,7 @@ Map<String, dynamic> _$PersonModelToJson(PersonModel instance) =>
       'email': instance.email,
       'cell': instance.cell,
       'name': instance.name?.toJson(),
+      'login': instance.login?.toJson(),
+      'picture': instance.picture?.toJson(),
+      'dob': instance.dob?.toJson(),
     };
