@@ -1,4 +1,5 @@
 import 'package:clubhub/core/constants/app_routes.dart';
+import 'package:clubhub/core/design/theme.dart';
 import 'package:clubhub/dependency_injection/injections.dart' as di;
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      theme: AppTheme.lightTheme,
       title: "ClubHub",
       routerConfig: AppRoutes.router,
     );

@@ -1,5 +1,9 @@
 import 'package:clubhub/core/constants/app_routes.dart';
+import 'package:clubhub/core/design/dimens.dart';
+import 'package:clubhub/core/design/text_theme.dart';
+import 'package:clubhub/core/extensions/string_extensions.dart';
 import 'package:clubhub/presentation/home/cubit/home_cubit.dart';
+import 'package:clubhub/presentation/widgets/person_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -24,14 +28,14 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: Text(context.loc.home),
         actions: [
           IconButton.filled(
-            onPressed: () {
-              context.pushNamed(AppRoutes.search);
-            },
+            onPressed: () => context.pushNamed(AppRoutes.search),
             icon: const Icon(Icons.search),
           )
         ],
@@ -44,16 +48,17 @@ class _HomeView extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else {
-            return ListView.builder(
-              physics: const ClampingScrollPhysics(),
-              itemCount: state.persons.length,
-              itemBuilder: (context, index) {
-                final person = state.persons[index];
-                return ListTile(
-                  title: Text(person.name),
-                  subtitle: Text(person.email),
-                );
-              },
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(Dimens.space16),
+                  child: Text(context.loc.contacts, style: textTheme.appTitle1),
+                ),
+                Expanded(
+                  child: PersonList(personList: state.persons),
+                ),
+              ],
             );
           }
         },

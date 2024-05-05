@@ -2,5 +2,10 @@
 
 {
   "appTitle": "My App",
-  "helloWorld": "Hello World"
+  "helloWorld": "Hello World",
+  "home": "Home",
+  "detail": "Detail",
+  "search": "Search",
+  "no_search_founds": "No results found",
+  "contacts": "Contacts"
 }
