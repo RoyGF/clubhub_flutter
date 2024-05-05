@@ -32,6 +32,10 @@ class Person {
     };
   }
 
+  String getFullName() {
+    return '$name $surname';
+  }
+
   @override
   String toString() {
     return 'Person{id: $id, name: $name, surname: $surname, email: $email, phone: $phone, cell: $cell, imageURL: $imageURL, age: $age}';

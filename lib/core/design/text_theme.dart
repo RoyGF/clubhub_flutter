@@ -8,6 +8,13 @@ extension CustomappText on TextTheme {
     );
   }
 
+  TextStyle get appTitle2 {
+    return const TextStyle(
+      fontSize: 20.0,
+      height: 1.25,
+    );
+  }
+
   TextStyle get appBody1 {
     return const TextStyle(
       fontSize: 14.0,

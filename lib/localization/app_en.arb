@@ -7,5 +7,10 @@
   "detail": "Detail",
   "search": "Search",
   "no_search_founds": "No results found",
-  "contacts": "Contacts"
+  "contacts": "Contacts",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "cell": "Cell",
+  "age": "Age"
 }
