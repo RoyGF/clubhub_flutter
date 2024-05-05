@@ -6,7 +6,9 @@ import 'package:clubhub/data/local/sql/persons_table.dart';
 import 'package:clubhub/data/remote/repository/remote_repository.dart';
 import 'package:clubhub/data/remote/repository/remote_repository_impl.dart';
 import 'package:clubhub/domain/get_persons.dart';
+import 'package:clubhub/domain/search_persons.dart';
 import 'package:clubhub/presentation/home/cubit/home_cubit.dart';
+import 'package:clubhub/presentation/search/cubit/search_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -38,10 +40,18 @@ Future<void> init() async {
     ),
   );
 
+  sl.registerFactory<SearchPersons>(
+    () => SearchPersons(
+      dataSource: sl(),
+    ),
+  );
+
   // Cubits
   sl.registerLazySingleton<HomeCubit>(
     () => HomeCubit(
       getPersons: sl(),
     ),
   );
+
+  sl.registerFactory<SearchCubit>(() => SearchCubit(searchPersons: sl()));
 }

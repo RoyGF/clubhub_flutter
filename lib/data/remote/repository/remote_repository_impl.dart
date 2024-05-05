@@ -6,14 +6,15 @@ import 'package:dio/dio.dart';
 
 class RemoteRepositoryImpl implements RemoteRepository {
   static final _options = BaseOptions(
-    baseUrl: "https://randomuser.me/api/?results=500&seed=hello",
+    baseUrl: "https://randomuser.me/api/",
   );
 
   final Dio _dio = Dio(_options);
 
   @override
   Future<Either<AppFailure, List<PersonModel>>> getPersons() async {
-    final response = await _dio.get("");
+    final response =
+        await _dio.get("", queryParameters: {"results": 600, "seed": "hello"});
 
     if (response.statusCode == 200) {
       final data = response.data;

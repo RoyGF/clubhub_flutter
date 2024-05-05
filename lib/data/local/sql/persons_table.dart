@@ -59,7 +59,8 @@ class PersonsDatabase {
   }
 
   Future<List<Person>> getPersons() async {
-    final List<Map<String, dynamic>> maps = await _database!.query('persons');
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('persons');
 
     return List.generate(maps.length, (i) {
       return Person(

@@ -18,8 +18,13 @@ class DataSourceImpl implements DataSource {
   @override
   Future<Either<AppFailure, List<Person>>> getPersons() async {
     try {
-      final result = await _fetchPersons();
+      List<Person> localPersons = await localRepository.getPersons();
 
+      if (localPersons.isNotEmpty) {
+        return Right(localPersons);
+      }
+
+      final result = await _fetchPersons();
       return await result.fold((failure) => Left(failure), (success) async {
         final result = await localRepository.getPersons();
         return Right(result);
