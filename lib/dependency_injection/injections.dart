@@ -5,8 +5,10 @@ import 'package:clubhub/data/local/repository/local_repository_impl.dart';
 import 'package:clubhub/data/local/sql/persons_table.dart';
 import 'package:clubhub/data/remote/repository/remote_repository.dart';
 import 'package:clubhub/data/remote/repository/remote_repository_impl.dart';
+import 'package:clubhub/domain/get_person_by_id.dart';
 import 'package:clubhub/domain/get_persons.dart';
 import 'package:clubhub/domain/search_persons.dart';
+import 'package:clubhub/presentation/detail/cubit/detail_cubit.dart';
 import 'package:clubhub/presentation/home/cubit/home_cubit.dart';
 import 'package:clubhub/presentation/search/cubit/search_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -40,8 +42,14 @@ Future<void> init() async {
     ),
   );
 
-  sl.registerFactory<SearchPersons>(
+  sl.registerLazySingleton<SearchPersons>(
     () => SearchPersons(
+      dataSource: sl(),
+    ),
+  );
+
+  sl.registerLazySingleton<GetPersonById>(
+    () => GetPersonById(
       dataSource: sl(),
     ),
   );
@@ -53,5 +61,15 @@ Future<void> init() async {
     ),
   );
 
-  sl.registerFactory<SearchCubit>(() => SearchCubit(searchPersons: sl()));
+  sl.registerFactory<SearchCubit>(
+    () => SearchCubit(
+      searchPersons: sl(),
+    ),
+  );
+
+  sl.registerFactory<DetailCubit>(
+    () => DetailCubit(
+      getPersonByid: sl(),
+    ),
+  );
 }

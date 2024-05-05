@@ -57,4 +57,16 @@ class DataSourceImpl implements DataSource {
       return Left(AppFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<AppFailure, Person>> getPersonById(String id) async {
+    try {
+      final result = await localRepository.getPerson(id);
+      return Right(result);
+    } catch (e) {
+      Logger.logError(
+          errorMessage: "Error: $e", stackTrace: StackTrace.current);
+      return Left(AppFailure(errorMessage: e.toString()));
+    }
+  }
 }

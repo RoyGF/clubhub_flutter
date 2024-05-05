@@ -23,7 +23,7 @@ class AppTheme {
       ),
       appBarTheme: const AppBarTheme(
         color: AppColors.primaryColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: AppColors.textColor),
       ),
     );
   }

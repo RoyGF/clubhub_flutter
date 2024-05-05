@@ -4,4 +4,5 @@ import 'package:dartz/dartz.dart';
 
 abstract class DataSource {
   Future<Either<AppFailure, List<Person>>> getPersons();
+  Future<Either<AppFailure, Person>> getPersonById(String id);
 }

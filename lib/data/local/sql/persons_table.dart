@@ -75,4 +75,24 @@ class PersonsDatabase {
       );
     });
   }
+
+  Future<Person> getPerson(String id) async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'persons',
+      where: "id = ?",
+      whereArgs: [id],
+    );
+
+    return Person(
+      id: maps[0]['id'],
+      name: maps[0]['name'],
+      surname: maps[0]['surname'],
+      email: maps[0]['email'],
+      phone: maps[0]['phone'],
+      cell: maps[0]['cell'],
+      age: maps[0]['age'],
+      imageURL: maps[0]['imageURL'],
+    );
+  }
 }

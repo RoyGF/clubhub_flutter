@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:clubhub/core/extensions/string_extensions.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -54,8 +55,7 @@ class SearchAppBarState extends State<SearchAppBar> {
   @override
   Widget build(BuildContext context) {
     return EasySearchBar(
-      backgroundColor: Colors.white30,
-      title: const Text('Recipes'),
+      title: Text(context.loc.search),
       onSearch: _onSearchChanged,
     );
   }

@@ -8,27 +8,18 @@ class LocalRepositoryImpl implements LocalRepository {
   final PersonsDatabase personsDatabase;
 
   @override
-  Future<void> deletePerson(int id) {
-    throw UnimplementedError();
-  }
-
-  @override
   Future<List<Person>> getPersons() async {
     return await personsDatabase.getPersons();
   }
 
   @override
-  Future<void> savePerson(Person person) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> updatePerson(Person person) {
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> addPersons(List<Person> persons) async {
     await personsDatabase.addPersons(persons);
+  }
+
+  @override
+  Future<Person> getPerson(String id) async {
+    final person = personsDatabase.getPerson(id);
+    return person;
   }
 }
