@@ -5,7 +5,6 @@ import 'package:clubhub/presentation/widgets/person_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:isar/isar.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
