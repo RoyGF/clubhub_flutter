@@ -22,7 +22,7 @@ class RemoteRepositoryImpl implements RemoteRepository {
       final persons = results.map((e) => PersonModel.fromJson(e)).toList();
       return Right(persons);
     } else {
-      return Left(AppFailure(errorMessage: "Error"));
+      return const Left(AppFailure(errorMessage: "Error"));
     }
   }
 }

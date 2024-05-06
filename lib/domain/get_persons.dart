@@ -1,3 +1,4 @@
+import 'package:clubhub/core/analytics/app_tracking.dart';
 import 'package:clubhub/core/base/base_use_case.dart';
 import 'package:clubhub/core/error/failures.dart';
 import 'package:clubhub/data/datasource/datasource.dart';
@@ -11,11 +12,17 @@ class GetPersons implements BaseUseCase<List<Person>, NoParams> {
 
   @override
   Future<Either<AppFailure, List<Person>>> call(NoParams params) async {
-    final result = await dataSource.getPersons();
+    try {
+      final result = await dataSource.getPersons();
 
-    return result.fold(
-      (failure) => Left(AppFailure(errorMessage: failure.errorMessage)),
-      (persons) => Right(persons),
-    );
+      return result.fold(
+        (failure) => Left(AppFailure(errorMessage: failure.errorMessage)),
+        (persons) => Right(persons),
+      );
+    } catch (e) {
+      AppTracking.logError(
+          errorMessage: "Error: $e", stackTrace: StackTrace.current);
+      return Left(AppFailure(errorMessage: e.toString()));
+    }
   }
 }

@@ -33,8 +33,8 @@ void main() {
           when(() => getPersonById.call(params))
               .thenAnswer((_) async => Right(mockPerson));
 
-          when(() => getPersonById.call(failParams))
-              .thenAnswer((_) async => Left(AppFailure(errorMessage: "error")));
+          when(() => getPersonById.call(failParams)).thenAnswer(
+              (_) async => const Left(AppFailure(errorMessage: "error")));
         },
       );
 
@@ -54,7 +54,7 @@ void main() {
         act: (cubit) => cubit.init("fail"),
         expect: () => [
           const DetailState(isLoading: true),
-          const DetailState(isLoading: false),
+          const DetailState(isLoading: false, errorMessage: "error"),
         ],
       );
     },

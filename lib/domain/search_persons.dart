@@ -15,15 +15,17 @@ class SearchPersons implements BaseUseCase<List<Person>, SearchPersonsParams> {
   Future<Either<AppFailure, List<Person>>> call(
       SearchPersonsParams params) async {
     try {
-      List<Person> persons = await dataSource
-          .getPersons()
-          .then((value) => value.getOrElse(() => []));
+      final personsResponse = await dataSource.getPersons();
 
-      List<Person> filteredList = persons
-          .where((element) =>
-              element.name.toLowerCase().contains(params.query.toLowerCase()))
-          .toList();
-      return Right(filteredList);
+      return personsResponse.fold(
+          (failure) => Left(AppFailure(errorMessage: failure.errorMessage)),
+          (persons) {
+        List<Person> filteredList = persons
+            .where((element) =>
+                element.name.toLowerCase().contains(params.query.toLowerCase()))
+            .toList();
+        return Right(filteredList);
+      });
     } catch (e) {
       AppTracking.logError(
           errorMessage: "Error: $e", stackTrace: StackTrace.current);

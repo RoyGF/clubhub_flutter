@@ -8,7 +8,7 @@ class AppTracking {
 
   static void trackEvent(
       {required String eventName, Map<String, dynamic>? parameters}) {
-    // Analytics Tool like Firebase can be implemented here in order to track all events in Firebase
+    // Analytics Tool like Amplitude can be implemented here in order to track all events in Firebase
     debugPrint("Event: $eventName, Parameters: $parameters");
   }
 }
