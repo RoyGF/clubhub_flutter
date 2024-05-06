@@ -1,0 +1,16 @@
+
+
+{
+  "appTitle": "My App",
+  "helloWorld": "Hello World",
+  "home": "Home",
+  "detail": "Detail",
+  "search": "Search",
+  "no_search_founds": "No results found",
+  "contacts": "Contacts",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "cell": "Cell",
+  "age": "Age"
+}
