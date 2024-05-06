@@ -7,7 +7,6 @@ import 'package:clubhub/presentation/detail/cubit/detail_cubit.dart';
 import 'package:clubhub/presentation/detail/widgets/profile_info_item.dart';
 import 'package:clubhub/presentation/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailScreen extends StatelessWidget {

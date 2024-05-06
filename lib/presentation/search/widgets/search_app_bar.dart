@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:clubhub/core/extensions/string_extensions.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +8,12 @@ class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
     super.key,
     required this.onSearch,
     this.onClear,
+    required this.title,
   }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   final Function(String) onSearch;
   final VoidCallback? onClear;
+  final String title;
 
   @override
   final Size preferredSize;
@@ -55,7 +56,7 @@ class SearchAppBarState extends State<SearchAppBar> {
   @override
   Widget build(BuildContext context) {
     return EasySearchBar(
-      title: Text(context.loc.search),
+      title: Text(widget.title),
       onSearch: _onSearchChanged,
     );
   }

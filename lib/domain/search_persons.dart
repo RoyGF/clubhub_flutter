@@ -1,6 +1,6 @@
 import 'package:clubhub/core/base/base_use_case.dart';
 import 'package:clubhub/core/error/failures.dart';
-import 'package:clubhub/core/error/logger.dart';
+import 'package:clubhub/core/analytics/app_tracking.dart';
 import 'package:clubhub/data/datasource/datasource.dart';
 import 'package:clubhub/data/local/models/person.dart';
 import 'package:dartz/dartz.dart';
@@ -25,7 +25,7 @@ class SearchPersons implements BaseUseCase<List<Person>, SearchPersonsParams> {
           .toList();
       return Right(filteredList);
     } catch (e) {
-      Logger.logError(
+      AppTracking.logError(
           errorMessage: "Error: $e", stackTrace: StackTrace.current);
       return Left(AppFailure(errorMessage: e.toString()));
     }

@@ -1,3 +1,5 @@
+import 'package:clubhub/core/analytics/app_tracking.dart';
+import 'package:clubhub/core/analytics/event_names.dart';
 import 'package:clubhub/data/local/models/person.dart';
 import 'package:clubhub/domain/search_persons.dart';
 import 'package:equatable/equatable.dart';
@@ -11,6 +13,8 @@ class SearchCubit extends Cubit<SearchState> {
   final SearchPersons searchPersons;
 
   Future<void> search(String query) async {
+    AppTracking.trackEvent(
+        eventName: EventNames.searchBar, parameters: {"query": query});
     emit(state.copyWith(isLoading: true));
 
     SearchPersonsParams params = SearchPersonsParams(query: query);

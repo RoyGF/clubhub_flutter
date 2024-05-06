@@ -1,5 +1,5 @@
 import 'package:clubhub/core/error/failures.dart';
-import 'package:clubhub/core/error/logger.dart';
+import 'package:clubhub/core/analytics/app_tracking.dart';
 import 'package:clubhub/core/error/success.dart';
 import 'package:clubhub/data/datasource/datasource.dart';
 import 'package:clubhub/data/local/models/person.dart';
@@ -30,7 +30,7 @@ class DataSourceImpl implements DataSource {
         return Right(result);
       });
     } catch (e) {
-      Logger.logError(
+      AppTracking.logError(
           errorMessage: "Error: $e", stackTrace: StackTrace.current);
       return Left(AppFailure(errorMessage: e.toString()));
     }
@@ -52,7 +52,7 @@ class DataSourceImpl implements DataSource {
         },
       );
     } catch (e) {
-      Logger.logError(
+      AppTracking.logError(
           errorMessage: "Error: $e", stackTrace: StackTrace.current);
       return Left(AppFailure(errorMessage: e.toString()));
     }
@@ -64,7 +64,7 @@ class DataSourceImpl implements DataSource {
       final result = await localRepository.getPerson(id);
       return Right(result);
     } catch (e) {
-      Logger.logError(
+      AppTracking.logError(
           errorMessage: "Error: $e", stackTrace: StackTrace.current);
       return Left(AppFailure(errorMessage: e.toString()));
     }

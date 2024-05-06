@@ -29,6 +29,7 @@ class _SearchView extends StatelessWidget {
 
     return Scaffold(
       appBar: SearchAppBar(
+        title: context.loc.search,
         onSearch: (value) {
           cubit.search(value);
         },
