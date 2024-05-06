@@ -23,10 +23,16 @@ class SearchCubit extends Cubit<SearchState> {
 
     result.fold(
       (failure) {
-        emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(
+          isLoading: false,
+          errorMessage: failure.errorMessage,
+        ));
       },
       (persons) {
-        emit(state.copyWith(isLoading: false, persons: persons));
+        emit(state.copyWith(
+          isLoading: false,
+          persons: persons,
+        ));
       },
     );
   }

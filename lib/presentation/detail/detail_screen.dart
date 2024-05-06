@@ -8,6 +8,7 @@ import 'package:clubhub/presentation/detail/widgets/profile_info_item.dart';
 import 'package:clubhub/presentation/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key, required this.personId});
@@ -32,7 +33,22 @@ class _DetailView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      body: BlocBuilder<DetailCubit, DetailState>(
+      body: BlocConsumer<DetailCubit, DetailState>(
+        listenWhen: (previous, current) =>
+            previous.errorMessage != current.errorMessage,
+        listener: (context, state) {
+          if (state.errorMessage != null) {
+            Fluttertoast.showToast(
+              msg: state.errorMessage!,
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: AppColors.errorColor,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+          }
+        },
         builder: (context, state) {
           if (state.isLoading) {
             return const Center(

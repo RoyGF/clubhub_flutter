@@ -19,15 +19,16 @@ class DetailCubit extends Cubit<DetailState> {
 
     result.fold(
       (failure) {
-        emit(state.copyWith(isLoading: false));
+        emit(state.copyWith(
+          isLoading: false,
+          errorMessage: failure.errorMessage,
+        ));
       },
       (person) {
-        emit(
-          state.copyWith(
-            isLoading: false,
-            person: person,
-          ),
-        );
+        emit(state.copyWith(
+          isLoading: false,
+          person: person,
+        ));
       },
     );
   }

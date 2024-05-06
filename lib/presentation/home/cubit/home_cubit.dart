@@ -18,8 +18,14 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await getPersons.call(NoParams());
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false)),
-      (persons) => emit(state.copyWith(persons: persons, isLoading: false)),
+      (failure) => emit(state.copyWith(
+        isLoading: false,
+        errorMessage: failure.errorMessage,
+      )),
+      (persons) => emit(state.copyWith(
+        persons: persons,
+        isLoading: false,
+      )),
     );
   }
 }
