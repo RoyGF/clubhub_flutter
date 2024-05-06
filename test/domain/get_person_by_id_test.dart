@@ -28,14 +28,11 @@ void main() {
 
   test('should return a person when the call to data source is successful',
       () async {
-    // Arrange
     when(() => mockDataSource.getPersonById(any()))
         .thenAnswer((_) async => Right(tPerson));
 
-    // Act
     final result = await getPersonById(GetPersonByIdParams(id: tId));
 
-    // Assert
     expect(result, Right(tPerson));
     verify(() => mockDataSource.getPersonById(tId)).called(1);
     verifyNoMoreInteractions(mockDataSource);
